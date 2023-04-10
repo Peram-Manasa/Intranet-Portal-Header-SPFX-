@@ -13,7 +13,7 @@ import "@pnp/sp/profiles";
 import "@pnp/sp/files";
 import "@pnp/sp/folders";
 import { getSP } from './Components/pnpConfig';
-
+import "@pnp/sp/navigation"
 const LOG_SOURCE: string = 'NewHeaderApplicationCustomizer';
 
 /**
@@ -36,6 +36,7 @@ export default class NewHeaderApplicationCustomizer
     public userPicUrl:string;
     public userName:string;
     public headerGreeting:string;
+    public qlItems = new Array
 
   public onInit(): Promise<void> {
     Log.info(LOG_SOURCE, `Initialized ${strings.Title}`);
@@ -50,20 +51,38 @@ export default class NewHeaderApplicationCustomizer
 
     return Promise.resolve();
   }
+
   private async _renderPlaceHolders(): Promise<void> {  
     const _sp:SPFI = getSP(this.context);
  
+   const  navItems =await  _sp.web.navigation.quicklaunch();
 
-  var user = (await _sp.web.currentUser()).Title
+   navItems.map((y=>{
+    // console.log(y)
+    this.qlItems.push({title:y.Title,url:y.Url});
+    
+    
+  }))
+    // navItems.then((x)=>{
+    //   x.map((y=>{
+    //     // console.log(y)
+    //     this.qlItems.push({title:y.Title,url:y.Url});
+        
+        
+    //   }))
+      console.log(this.qlItems);
+   
+    
+  const user = (await _sp.web.currentUser()).Title
   // const profile= await _sp.profiles.userProfile 
 this.userName = user
 console.log(this.userName)
 // let user  = (await _sp.web.currentUser().Title)
 const profile= await _sp.profiles.userProfile
  //const name=profile.DisplayName;
- var tenantUri = window.location.protocol + "//" + window.location.host;
+ const tenantUri = window.location.protocol + "//" + window.location.host;
  console.log(tenantUri)
- let url=profile.PictureUrl;
+ const url=profile.PictureUrl;
  this.userPicUrl = url
  console.log(url)
  const d = new Date()
@@ -98,7 +117,7 @@ const profile= await _sp.profiles.userProfile
       }  
     }
 
-    const ele = React.createElement(Headercomponent,{user:this.userName,greet:this.headerGreeting,url:this.userPicUrl,uri:tenantUri,sitename:this.context.pageContext.web.title})
+    const ele = React.createElement(Headercomponent,{user:this.userName,greet:this.headerGreeting,url:this.userPicUrl,uri:tenantUri,sitename:this.context.pageContext.web.title,items:this.qlItems,siteabsUrl:this.context.pageContext.web.absoluteUrl})
     ReactDOM.render(ele,this._topPlaceholder.domElement)
 }
 

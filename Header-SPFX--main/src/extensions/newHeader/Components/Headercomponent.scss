@@ -74,6 +74,11 @@
         align-items:center;
         justify-content:space-between;
         flex-direction:row;
+   
+      .active a {
+          background-color: pink;
+      }
+       
         // padding:4px;
       }
       ul li a{
@@ -119,7 +124,7 @@
     text-align: center;
     padding:10px;
     // width: 20%;
-
+        white-space: nowrap;
     border-right: 0.1px solid rgb(250, 251, 253);
     a{
       font-size: 14px;
@@ -133,6 +138,17 @@
         //     color: #fbf9f9;
         // }
       } 
+
+      .navItemActive{
+        background-color: #547CA2;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding:10px;
+        white-space: nowrap;
+        border-right: 0.1px solid rgb(250, 251, 253);
+      }
 
       .submitbtn {
         // padding: 10px;
@@ -240,6 +256,20 @@
     input::placeholder {
       color: rgb(252, 249, 249);
   }
+
+  .menubar::-webkit-scrollbar {
+    width: 16px;
+  }
+  
+  .menubar::-webkit-scrollbar-track {
+    background-color: #e4e4e4;
+    border-radius: 100px;
+  }
+  
+  .menubar::-webkit-scrollbar-thumb {
+    background-color: #547CA2;
+    border-radius: 100px;
+  }
     .menubar{
       display: grid;
       // grid-template-columns: repeat(2, 150px);
@@ -249,16 +279,24 @@
        position: fixed;
       z-index: 999999;
       top: 190px;
-      left: 51px;
+      left: 10px;
       height: 60vh;
       border-radius: 10px;
       padding: 10px;
-      //  overflow-x: hidden;
-      // overflow-y: scroll;
+       overflow-x: hidden;
+      overflow-y: scroll;
+         //  justify-content: center;
+         a{
+          text-decoration: none;
+          color: #ffffff;
+          }
       .menuitem {
         display: flex;
        flex-direction: row;
        align-items: center;
+       -webkit-scrollbar-thumb:hover {
+  background: #555;
+     }
         
       //  justify-content: center;
        a{
