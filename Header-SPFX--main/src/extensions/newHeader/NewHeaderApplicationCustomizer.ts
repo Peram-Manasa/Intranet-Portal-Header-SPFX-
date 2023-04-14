@@ -78,13 +78,14 @@ export default class NewHeaderApplicationCustomizer
 this.userName = user
 console.log(this.userName)
 // let user  = (await _sp.web.currentUser().Title)
-const profile= await _sp.profiles.userProfile
+// const profile= await _sp.profiles.userProfile
  //const name=profile.DisplayName;
  const tenantUri = window.location.protocol + "//" + window.location.host;
  console.log(tenantUri)
- const url=profile.PictureUrl;
- this.userPicUrl = url
- console.log(url)
+// const url=profile.PictureUrl;
+ this.userPicUrl = `${this.context.pageContext.web.absoluteUrl}${"/_layouts/15/userphoto.aspx?size=L&accountname="+this.context.pageContext.user.email+""}`
+ //console.log(url)
+//  photoUrl: 
  const d = new Date()
  const hour = d.getHours()
  const greeting = hour>12?(hour>17?"Good Evening":"Good Afternoon"):"Good Morning"

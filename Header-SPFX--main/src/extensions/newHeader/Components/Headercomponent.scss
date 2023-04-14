@@ -126,6 +126,7 @@
     // width: 20%;
         white-space: nowrap;
     border-right: 0.1px solid rgb(250, 251, 253);
+    cursor: pointer;
     a{
       font-size: 14px;
       color: #ffffff;
@@ -148,6 +149,7 @@
         padding:10px;
         white-space: nowrap;
         border-right: 0.1px solid rgb(250, 251, 253);
+        cursor: pointer;
       }
 
       .submitbtn {

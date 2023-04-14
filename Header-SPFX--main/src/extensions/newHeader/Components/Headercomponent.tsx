@@ -39,15 +39,19 @@ const Headercomponent = (props:any) => {
       switch(props.sitename){
         case param.realsitename:return(
           param.realsitename==="Dev"?
-          <a   href={`https://24cl8t.sharepoint.com/sites/${param.site}`}><div className ="navItemActive" >{param.title}</div></a>:
-          <a   href={`https://24cl8t.sharepoint.com/sites/Dev/${param.site}`}><div className ="navItemActive" >{param.title}</div></a>
-       
+          //  <a   href={`https://24cl8t.sharepoint.com/sites/${param.site}`}><div className ="navItemActive" >{param.title}</div></a>:
+          //  <a   href={`https://24cl8t.sharepoint.com/sites/Dev/${param.site}`}><div className ="navItemActive" >{param.title}</div></a>
+          <div className ="navItemActive"  onClick={()=> window.open(`https://24cl8t.sharepoint.com/sites/${param.site}`,"_self")} >{param.title}</div>:
+          <div className ="navItemActive"  onClick={()=> window.open(`https://24cl8t.sharepoint.com/sites/Dev/${param.site}`,"_self")} >{param.title}</div>
           )
       
         default:return(
           param.realsitename==="Dev"?
-          <a href={`https://24cl8t.sharepoint.com/sites/${param.site}`}  target={"_blank"} ><div className ="navItem" >{param.title}</div></a>:
-          <a href={`https://24cl8t.sharepoint.com/sites/Dev/${param.site}`} target={"_blank"}><div className ="navItem" >{param.title}</div></a>
+          // <a href={`https://24cl8t.sharepoint.com/sites/${param.site}`}  target={"_blank"} ><div className ="navItem" >{param.title}</div></a>:
+          // <a href={`https://24cl8t.sharepoint.com/sites/Dev/${param.site}`} target={"_blank"}><div className ="navItem" >{param.title}</div></a>
+          <div className ="navItem"  onClick={()=> window.open(`https://24cl8t.sharepoint.com/sites/${param.site}`,"_self")} >{param.title}</div>:
+          <div className ="navItem"  onClick={()=> window.open(`https://24cl8t.sharepoint.com/sites/Dev/${param.site}`, "_blank")} >{param.title}</div>
+
         )
         
       }
